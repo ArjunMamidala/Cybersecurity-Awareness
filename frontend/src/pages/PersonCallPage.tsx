@@ -23,12 +23,12 @@ export default function PersonCallPage() {
   const person = location.state?.person as Person | undefined;
 
   const MOCK_PEOPLE = [
-  { id: '1', name: 'Alice Chen', role: 'Engineering', phone: '+19194283795' },
-  { id: '2', name: 'Bob Smith', role: 'Marketing', phone: '+19195551002' },
-  { id: '3', name: 'Carol Davis', role: 'HR', phone: '+19195551003' },
-  { id: '4', name: 'David Lee', role: 'Engineering', phone: '+19195551004' },
-  { id: '5', name: 'Eve Wilson', role: 'Finance', phone: '+19195551005' },
-];
+    { id: '1', name: 'Alice Chen', role: 'Engineering', phone: '+19194283795' },
+    { id: '2', name: 'Bob Smith', role: 'Marketing', phone: '+19195551002' },
+    { id: '3', name: 'Carol Davis', role: 'HR', phone: '+19195551003' },
+    { id: '4', name: 'David Lee', role: 'Engineering', phone: '+19195551004' },
+    { id: '5', name: 'Eve Wilson', role: 'Finance', phone: '+19195551005' },
+  ];
 
   const [activeTab, setActiveTab] = useState<'overview' | 'metrics'>('overview');
   const [metrics, setMetrics] = useState<PersonMetrics | null>(null);
@@ -132,14 +132,14 @@ export default function PersonCallPage() {
               className="inline-flex items-center gap-2 px-6 py-3 bg-[#0f172a] text-white rounded-lg hover:bg-[#1e293b] font-medium transition-colors shadow-sm"
               onClick={() => {
                 fetch('http://localhost:8000/api/call/initiate', {
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({
+                  method: 'POST',
+                  headers: { 'Content-Type': 'application/json' },
+                  body: JSON.stringify({
                     phone_number: person.phone,
                     scenario_id: 'bank_fraud'
-                    })
-                })
-                }}
+                  })
+                });
+              }}
             >
               <Phone className="h-4 w-4" />
               Start Simulation Call

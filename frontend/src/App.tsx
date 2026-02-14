@@ -1,22 +1,25 @@
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
-import AdminDashboard from './pages/admin/AdminDashboard';
-import EmployeeDashboard from './pages/employee/EmployeeDashboard.tsx';
-import SimulationCreator from './pages/admin/SimulationCreator';
-import LoginPage from './pages/auth/LoginPage';
-import EmployeeFeedback from './pages/employee/EmployeeFeedback';
+import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom';
+import Home from './pages/Home';
+import AppLayout from './components/AppLayout';
+import PeoplePage from './pages/PeoplePage';
+import PersonCallPage from './pages/PersonCallPage';
+import BatchPage from './pages/BatchPage';
+import MetricsPage from './pages/MetricsPage';
 
 function App() {
   return (
-    <Router>
+    <BrowserRouter>
       <Routes>
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/admin/dashboard" element={<AdminDashboard />} />
-        <Route path="/admin/create-simulation" element={<SimulationCreator />} />
-        <Route path="/employee/dashboard" element={<EmployeeDashboard />} />
-        <Route path="/employee/feedback/:simulationId" element={<EmployeeFeedback />} />
-        <Route path="/" element={<Navigate to="/login" replace />} />
+        <Route path="/" element={<Home />} />
+        <Route element={<AppLayout />}>
+          <Route path="/people" element={<PeoplePage />} />
+          <Route path="/people/batch" element={<BatchPage />} />
+          <Route path="/people/:personId" element={<PersonCallPage />} />
+          <Route path="/metrics" element={<MetricsPage />} />
+        </Route>
+        <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>
-    </Router>
+    </BrowserRouter>
   );
 }
 
